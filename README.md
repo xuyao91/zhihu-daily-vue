@@ -1,6 +1,6 @@
 # zhihu-daily-vue
 
-> this is a zhihu daily client with vuejs
+> 使用vuejs编写的知乎日报
 
 ## Build Setup
 
