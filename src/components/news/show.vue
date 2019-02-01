@@ -4,36 +4,60 @@
 			<img :src="handleImg.attachImageUrl(story.image)" class="story-main-img" />
 			<!-- <span v-text="story.image"></span> -->
 		</section>
-		<section>
+			<h2 v-text="story.title" style="margin: 5%;text-margin: left;"></h2>
 			<div v-html="story.body" class="story-content"></div>
-		</section>
-		<section>
 			<div class="bottom-nav">
-				<div class="bottom-nav-icon">
-					<el-badge :value="12" class="item">
-						<img src="../../assets/comment.png" />
-					</el-badge>
-				</div>
+				<router-link :to="'/comments/index?story_id=' + this.$route.params.id ">
+					<div class="bottom-nav-icon" >
+						<el-badge :value="commentsCount" class="item" >
+							<img src="../../assets/comment.png" />
+						</el-badge>
+					</div>
+				</router-link>
 				<div class="bottom-nav-icon">
 					<el-badge  class="item">
 						<img src="../../assets/share.png" />
 					</el-badge>	
 				</div>
 			</div>
-		</section>
 	</div>
 </template>
 <script>
 import {newsController} from '@/controllers/news'
+import {commentsController} from '@/controllers/comments'
 import {handleImg} from '@/utils/handleImg'
 export default {
     data(){
 			return{
 				handleImg: handleImg,
-				story: {}
+				story: {},
+				commentsCount: 0
 			}
 		},
 		methods: {
+			init(){
+				this.show()
+				this.getShortCommentsList()
+				this.getLongCommentsList()
+			},
+			getShortCommentsList(){
+				commentsController.short({story_id: this.$route.params.id})
+				.then(res => {
+					if(res.status == 200) {
+						console.log(res.data.comments, 'shortcomments')
+						this.commentsCount += res.data.comments.length
+					}
+				})
+			},
+			getLongCommentsList(){
+				commentsController.long({story_id: this.$route.params.id})
+				.then(res => {
+					if(res.status == 200) {
+						console.log(res.data.comments, 'longcomments')
+						this.commentsCount += res.data.comments.length
+					}
+				})
+			},
 			show(){
 				newsController.show({id: this.$route.params.id})
 				.then(res => {
@@ -43,16 +67,21 @@ export default {
 					}
 				})
 			},
+			viewComment(){
+				this.$router.push({
+          path: "/comments/index?story_id" + this.$route.params.id
+        });
+			}
 		},
 		created(){
-			this.show()
+			this.init()
 		}    
 }
 </script>
 <style>
 .content img{width: 100%;height: 100%;}
 .story-content{    
-	padding: 5%;
+	padding: 0 5% 5% 5%;
 	text-align: left;}
 .avatar{    
 	border-radius: 50%;
@@ -60,7 +89,7 @@ export default {
   margin-right: 10px;}	
 .author{font-weight: bold;}	
 .story-main-img{width: 100%;}
-.story-content .meta{margin: 30px 0}
+.story-content .meta{margin: 30px 0;margin-bottom: 50px;}
 .bottom-nav{
 	  height: 45px;
     position: fixed;

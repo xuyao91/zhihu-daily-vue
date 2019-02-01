@@ -1,52 +1,51 @@
 <template>
 	<div>
 		<section>
-			<el-radio-group v-model="currentComment"  style="margin-bottom: 30px;" :stretch=true>
-				<el-radio-button label="short">短评</el-radio-button>
-				<el-radio-button label="long">长评</el-radio-button>
+			<h3>热门评论</h3>
+			<el-radio-group v-model="currentComment" :stretch=true>
+				<el-radio-button label="short">短评(  {{shortComments.length}} )</el-radio-button>
+				<el-radio-button label="long">长评({{longComments.length}})</el-radio-button>
 			</el-radio-group>
 		</section>
-		<section>
-			<div	 v-if="currentComment == 'short'">
-				<ul>
-					<li v-for="short_comment in shortComments" :key="short_comment.id">
-						<div class="author-info">
-							<img :src="handleImg.attachImageUrl(short_comment.avatar)" class="avatar" />
-							<span class="name" v-text="short_comment.author"></span>
-							<span class="like-content">
-								<span style="color: #515151;" v-text="short_comment.likes"></span>
-								<img class="like" src="../../assets/like.png" /></span>
-						</div>	
-						<div class="comment-content">
-							<span v-text="short_comment.content"></span>
-						</div>
-						<div style="text-align: left;margin-left: 10%;">
-							<span class="comment-time" v-text="formatUnixtimestamp(short_comment.time)"></span>	
-						</div>	
-					</li>
-				</ul>
-			</div>
+		<div v-if="currentComment == 'short'">
+			<ul>
+				<li v-for="short_comment in shortComments" :key="short_comment.id">
+					<div class="author-info">
+						<img :src="handleImg.attachImageUrl(short_comment.avatar)" class="avatar" />
+						<span class="name" v-text="short_comment.author"></span>
+						<span class="like-content">
+							<span style="color: #515151;" v-text="short_comment.likes"></span>
+							<img class="like" src="../../assets/like.png" /></span>
+					</div>	
+					<div class="comment-content">
+						<span v-text="short_comment.content"></span>
+					</div>
+					<div style="text-align: left;margin-left: 10%;">
+						<span class="comment-time" v-text="formatUnixtimestamp(short_comment.time)"></span>	
+					</div>	
+				</li>
+			</ul>
+		</div>
 
-			<div v-if="currentComment == 'long'">
-				<ul>
-					<li v-for="long_comment in longComments" :key="long_comment.id">
-						<div class="author-info">
-							<img :src="handleImg.attachImageUrl(long_comment.avatar)" class="avatar" />
-							<span class="name" v-text="long_comment.author"></span>
-							<span class="like-content">
-								<span style="color: #515151;" v-text="long_comment.likes"></span>
-								<img class="like" src="../../assets/like.png" /></span>
-						</div>	
-						<div class="comment-content">
-							<span v-text="long_comment.content"></span>
-						</div>
-						<div style="text-align: left;margin-left: 10%;">
-							<span class="comment-time" v-text="formatUnixtimestamp(long_comment.time)"></span>	
-						</div>	
-					</li>
-				</ul>
-			</div>
-		</section>
+		<div v-if="currentComment == 'long'">
+			<ul>
+				<li v-for="long_comment in longComments" :key="long_comment.id">
+					<div class="author-info">
+						<img :src="handleImg.attachImageUrl(long_comment.avatar)" class="avatar" />
+						<span class="name" v-text="long_comment.author"></span>
+						<span class="like-content">
+							<span style="color: #515151;" v-text="long_comment.likes"></span>
+							<img class="like" src="../../assets/like.png" /></span>
+					</div>	
+					<div class="comment-content">
+						<span v-text="long_comment.content"></span>
+					</div>
+					<div style="text-align: left;margin-left: 10%;">
+						<span class="comment-time" v-text="formatUnixtimestamp(long_comment.time)"></span>	
+					</div>	
+				</li>
+			</ul>
+		</div>
 	</div>
 </template>
 <script>
@@ -127,7 +126,7 @@ export default {
 	  font-size: 14px;
     color: #8a8a8a;
 }
-ul{margin-left: -5%;}
+ul{margin-left: -8%;}
 ul li{
 	list-style: none;
 	margin: 10% 0;
@@ -135,6 +134,7 @@ ul li{
 .comment-content{
 	margin-left: 10%;
 	text-align: left;
+	margin-right: 10px;
 }
 </style>
 

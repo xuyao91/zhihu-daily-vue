@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="block">
-				<el-carousel height="300px" :trigger="click">
+				<el-carousel height="350px" :trigger="click">
 					<el-carousel-item v-for="item in top_stories" :key="item.id" @click="viewDetail(item)">
 						<!-- <router-link to="/news/"> -->
 							<img v-bind:src="handleImg.attachImageUrl(item.image)" height="100%" width="100%"  @click="viewDetail(item)" />
@@ -10,23 +10,21 @@
 					</el-carousel-item>
 				</el-carousel>
 		</div>
-		<section>
-			<el-row>
-				<el-col :span="24" v-for="story in stories" :key="story.id">
-					<router-link :to="'/news/' + story.id">
-					<el-card :body-style="{ padding: '0px' }">
-						<div style="padding: 10px 5px;">
-							<div class="story-title"><span v-text="story.title"></span></div>
-							<div class="story-img">
-								<img v-bind:src="handleImg.attachImageUrl(story.images[0])" class="image">
-								<!-- <span v-if="story.multipic">多图</span> -->
-							</div>
+		<el-row>
+			<el-col :span="24" v-for="story in stories" :key="story.id" >
+				<router-link :to=" '/news/' + story.id">
+				<el-card :body-style="{ padding: '0px' }">
+					<div style="padding: 10px 5px;">
+						<div class="story-title"><span v-text="story.title"></span></div>
+						<div class="story-img">
+							<img v-bind:src="handleImg.attachImageUrl(story.images[0])" class="image">
+							<!-- <span v-if="story.multipic">多图</span> -->
 						</div>
-					</el-card>
-					</router-link>	
-				</el-col>
-			</el-row>
-		</section>
+					</div>
+				</el-card>
+				</router-link>	
+			</el-col>
+		</el-row>
 	</div>
     
 </template>
@@ -89,7 +87,7 @@ export default {
      background-color: #d3dce6;
   }
   .top-story-title{
-        margin-top: -16%;
+        margin-top: -18%;
         color: #fff;
         font-size: 18px;
         font-weight: bold;
