@@ -9,7 +9,6 @@ const newsController = {
         })    
     },
     show(params){
-        console.log(params, 'id')
         return httpService({
             method: 'get',
             url: this.baseUrl + params.id

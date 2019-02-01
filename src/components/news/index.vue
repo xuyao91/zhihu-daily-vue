@@ -1,32 +1,33 @@
 <template>
 	<div>
 		<div class="block">
-				<el-carousel height="300px" :autoplay=false>
-					<el-carousel-item v-for="item in top_stories" :key="item.id" :name="item.title">
-						<router-link to="/news/">
-							<img v-bind:src="handleImg.attachImageUrl(item.image)" height="100%" width="100%" />
-							</router-link>
+				<el-carousel height="300px" :trigger="click">
+					<el-carousel-item v-for="item in top_stories" :key="item.id" @click="viewDetail(item)">
+						<!-- <router-link to="/news/"> -->
+							<img v-bind:src="handleImg.attachImageUrl(item.image)" height="100%" width="100%"  @click="viewDetail(item)" />
+							<!-- </router-link> -->
 						<div v-text="item.title" class="top-story-title"></div>
 					</el-carousel-item>
 				</el-carousel>
 		</div>
-		<el-row>
-			<el-col :span="24" v-for="story in stories" :key="story.id">
-				<el-card :body-style="{ padding: '0px' }">
-				<router-link :to="'/news/' + story.id">
-					<div style="padding: 14px 5px;">
-						<div class="story-title"><span v-text="story.title"></span></div>
-						<div class="story-img">
-							<img v-bind:src="handleImg.attachImageUrl(story.images[0])" class="image">
-							<span v-if="story.multipic">多图</span>
+		<section>
+			<el-row>
+				<el-col :span="24" v-for="story in stories" :key="story.id">
+					<router-link :to="'/news/' + story.id">
+					<el-card :body-style="{ padding: '0px' }">
+						<div style="padding: 10px 5px;">
+							<div class="story-title"><span v-text="story.title"></span></div>
+							<div class="story-img">
+								<img v-bind:src="handleImg.attachImageUrl(story.images[0])" class="image">
+								<!-- <span v-if="story.multipic">多图</span> -->
+							</div>
 						</div>
-					</div>
-				</router-link>	
-				</el-card>
-			</el-col>
-		</el-row>
-
-    </div>
+					</el-card>
+					</router-link>	
+				</el-col>
+			</el-row>
+		</section>
+	</div>
     
 </template>
 <script>
@@ -55,17 +56,24 @@ export default {
 						this.top_stories = res.data.top_stories
 					}
 				})
+			},
+			viewDetail(item){
+				console.log(item, 'item')
+				this.$router.push({
+          path: "/news/" + item.id
+        });
 			}
     },
     created(){
-			console.log(handleImg, 'handleimg')
 			this.getLatest()
     }
-    
 }
 </script>
+<!-- <style lang="sass" scoped>
+   @import "../../assets/news.sass"
+</style> -->
 <style>
-  .el-carousel__item h3 {
+.el-carousel__item h3 {
     color: #475669;
     font-size: 14px;
     opacity: 0.75;
@@ -102,6 +110,9 @@ export default {
 	}
 	a{color: #303133}
 	a:hover{color: #303133}
-	a:visited{color: #303133}
+    a:visited{color: #303133}
+    
+    
 </style>
+	
 

@@ -7,7 +7,20 @@
 		<section>
 			<div v-html="story.body" class="story-content"></div>
 		</section>
-
+		<section>
+			<div class="bottom-nav">
+				<div class="bottom-nav-icon">
+					<el-badge :value="12" class="item">
+						<img src="../../assets/comment.png" />
+					</el-badge>
+				</div>
+				<div class="bottom-nav-icon">
+					<el-badge  class="item">
+						<img src="../../assets/share.png" />
+					</el-badge>	
+				</div>
+			</div>
+		</section>
 	</div>
 </template>
 <script>
@@ -19,7 +32,6 @@ export default {
 				handleImg: handleImg,
 				story: {}
 			}
-			
 		},
 		methods: {
 			show(){
@@ -49,5 +61,17 @@ export default {
 .author{font-weight: bold;}	
 .story-main-img{width: 100%;}
 .story-content .meta{margin: 30px 0}
+.bottom-nav{
+	  height: 45px;
+    position: fixed;
+    z-index: 9999;
+    /* margin-bottom: 20px; */
+    bottom: 0px;
+    text-align: center;
+    background-color: #fff;
+    width: 100%;
+}
+.bottom-nav img{height: 25px;}
+.bottom-nav-icon{display: inline-block; width: 33%;margin-top: 3%;}
 </style>
 
