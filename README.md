@@ -19,13 +19,13 @@ element-ui + sass
 
 ## 项目截图
 ### 首页
-![http://blog.1nongfu.com/1549009253559.jpg](http://blog.1nongfu.com/1549009253559.jpg){:width="400px"}
+![./src/assets/1549009253559.jpg](./src/assets/1549009253559.jpg)
 
 ### 新闻详情页
-![http://blog.1nongfu.com/1549086474230.jpg](http://blog.1nongfu.com/1549086474230.jpg)
+![./src/assets/1549086474230.jpg](./src/assets/1549086474230.jpg)
 
 ### 评论查看页
-![http://blog.1nongfu.com/1549086562504.jpg](http://blog.1nongfu.com/1549086562504.jpg)
+![./src/assets/1549086562504.jpg](./src/assets/1549086562504.jpg)
 
 ## Build Setup
 
