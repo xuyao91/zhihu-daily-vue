@@ -24,25 +24,11 @@ element-ui + sass
 ![http://blog.1nongfu.com/1549009253559.jpg](http://blog.1nongfu.com/1549009253559.jpg)
 
 ### 新闻详情页
-![newsDetail.gif](./screenshots/newsDetail.gif)
+![http://blog.1nongfu.com/1549086474230.jpg](http://blog.1nongfu.com/1549086474230.jpg)
 
 ### 评论查看页
-![comment.gif](./screenshots/comment.gif)
+![http://blog.1nongfu.com/1549086562504.jpg](http://blog.1nongfu.com/1549086562504.jpg)
 
-### 编写评论页
-![writeComment.jpeg](./screenshots/writeComment.jpeg)
-
-### 主题页
-![themeDetail.gif](./screenshots/themeDetail.gif)
-
-### 编辑列表页
-![editorList.jpeg](./screenshots/editorList.jpeg)
-
-### 编辑个人详情页
-![editor.jpeg](./screenshots/editor.jpeg)
-
-###  收藏页
-![collect.gif](./screenshots/collect.gif)
 ## Build Setup
 
 ``` bash
